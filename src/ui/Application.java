@@ -9,7 +9,6 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import logging.LogSetup;
-
 import client.Client;
 import client.ClientSocketListener;
 import client.TextMessage;
@@ -227,12 +226,18 @@ public class Application implements ClientSocketListener {
      */
     public static void main(String[] args) {
     	try {
+    		System.setProperty("file.encoding", "US-ASCII");
 			new LogSetup("logs/client.log", Level.OFF);
 			Application app = new Application();
 			app.run();
 		} catch (IOException e) {
 			System.out.println("Error! Unable to initialize logger!");
 			e.printStackTrace();
+			System.exit(1);
+		}
+    	catch (SecurityException ex) {
+			System.out.println("Error! Unable to set enconding to ASCII.");
+			ex.printStackTrace();
 			System.exit(1);
 		}
     }
