@@ -1,3 +1,4 @@
 /bin
+.gitignore.swp
 echoClient.jar
 MANIFEST.MF
